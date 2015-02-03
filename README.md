@@ -424,7 +424,7 @@ Test hooks are used for back-end tests e.g. testing some Ruby logic.
 
 Tracking hooks are used for tracking elements for analytics.
 
-They're simply classes namespaced like so: `.wf-test-` (test) / `.wf-track` (tracking) and follow the same naming convention as JS Hooks e.g. `.wf-test-[component]-[UI-it's-affecting]` / `.wf-track-[component]-[UI-it's-affecting]`.
+They're simply classes namespaced like so: `.test-` (test) / `.track` (tracking) and follow the same naming convention as JS Hooks e.g. `.test-[component]-[UI-it's-affecting]` / `.track-[component]-[UI-it's-affecting]`.
 
 **Test and Tracking hooks hooks do not use BEM.**
 
@@ -437,8 +437,8 @@ The order of the above hooks, within the `class` attribute, should be:
     2. Layout hook (`.l-`)
     3. Utility hook (`u-`)
 2. JS hooks (`.js-`)
-3. Test hooks (`.wf-test-`)
-4. Tracking hooks (`.wf-track-`)
+3. Test hooks (`.test-`)
+4. Tracking hooks (`.track-`)
 
 Example:
 
