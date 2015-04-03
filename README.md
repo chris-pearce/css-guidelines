@@ -791,7 +791,7 @@ It acts as a nice reminder to other devs that you aren't using it incorrectly i.
     ```
     // N.B: have to increase the specificity by chaining the base `.btn` class to make it easy to override non-simple modifiers
     ```
-4. When you end a Sass `@if` statement then follow the closing bracket with `// end if`.
+4. When you end a Sass `@if` statement then follow the closing bracket with `// endif`.
 
 
 
