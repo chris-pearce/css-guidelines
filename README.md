@@ -684,7 +684,7 @@ img {
 
 ### Component-Extension pointers
 
-When working across multiple partials and in an OOCSS manner, you will often find that rule sets from components that can work in conjunction with each other are not always in the same file. In this scenario we need to include a comment to highlight this so that other developers are aware of the relationship between the files.
+When working across multiple partials and in an OOCSS manner sometimes we need to make adjustments to a component that exists within another component. This should be avoided in favour of using a BEM modifier on the component itself so that you don't end up with many dependencies across your components however sometimes this isn't the most appriopiate way of handling things. So in this scenario we need to include a comment to highlight this so that other developers are aware of the relationship between the files.
 
 This is the format to use:
 
@@ -692,7 +692,7 @@ This is the format to use:
 /**
  * Component-Extension pointer.
  *
- * These rules extend `.btn` in Components Buttons.
+ * These rules extend `.c-button` in Components Buttons.
  */
 ```
 
