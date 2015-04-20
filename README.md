@@ -690,9 +690,7 @@ This is the format to use:
 
 ```
 /**
- * Component-Extension pointer.
- *
- * These rules extend `.c-button` in Components Buttons.
+ * Extend `.[component class]` in Components -> [component name].
  */
 ```
 
