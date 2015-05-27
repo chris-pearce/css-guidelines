@@ -84,7 +84,7 @@ Configure your text editor to adhere to the above. At the bare minimum configure
 
 #### Sublime Text
 
-If you use Sublime Text editor (and you should) then install [this package](https://github.com/SublimeText/TrailingSpaces) and use these settings in your **Settings - User** file which can be found here: **Sublime Text -> Preferences -> Settings User**:
+If you use Sublime Text editor then install [this package](https://github.com/SublimeText/TrailingSpaces) and use these settings in your **Settings - User** file which can be found here: **Sublime Text -> Preferences -> Settings User**:
 
 ```
 "tab_size": 2,
@@ -128,83 +128,90 @@ For reference here is an anatomy of a rule set:
 ### Formatting rules
 
 - Class names to use BEM notation, see [Naming Conventions -> BEM](#bem), where BEM isn't used then hyphen delimited class names are to be used.
-- Use one discrete selector per line in multi-selector rule sets, e.g.
+- Use one discrete selector per line in multi-selector rule sets.
 
-  ```
+  **Good**
+  ```scss
   .error,
   .success {
     ...
   }
   ```
-  *not*
-  ```
+  
+  **Bad**
+  ```scss
   .error, .success {
     ...
   }
   ```
-- Include a single space before the opening brace of a rule set, e.g.
-
-  ```
+- Include a single space before the opening brace of a rule set.
+  
+  **Good**
+  ```scss
   .error,
   .success {
     ...
   }
   ```
-  *not*
-  ```
+  
+  **Bad**
+  ```scss
   .error,
   .success{
     ...
   }
   ```
-- Place the closing brace of a rule set in the same column as the first character of the rule set, e.g.
+- Place the closing brace of a rule set in the same column as the first character of the rule set.
 
-  ```
+  **Good**
+  ```scss
   .error,
   .success {
     ...
   }
   ```
-  *not*
-  ```
+  
+  **Bad**
+  ```scss
   .error,
   .success {
     ...}
   ```
-- Properties within rule sets should each reside on their own line except for single-line declaration rule sets, e.g.
+- Properties within rule sets should each reside on their own line.
 
-  ```
+  **Good**
+  ```scss
   p {
     margin: 0;
     padding: 0;
   }
   ```
-  *not*
-  ```
+  
+  **Bad**
+  ```scss
   p {margin: 0; padding: 0;}
   ```
-  *single-line declaration rule sets allowed, e.g.*
-  ```
-  p {margin: 0;}
-  ```
-- Use one level of indentation for each declaration, e.g.
+- Use one level of indentation for each declaration.
 
-  ```
+  **Good**
+  ```scss
   .error {
     border: 0;
     margin: 0;
   }
   ```
-  *not*
-  ```
+  
+  **Bad**
+  ```scss
   .error {
   border: 0;
   margin: 0;
   }
   ```
-- Separate each rule set by a blank line, e.g.
+- Separate each rule set by a blank line.
 
-  ```
+  **Good**
+  ```scss
   .error {
     border: 0;
     margin: 0;
@@ -215,8 +222,9 @@ For reference here is an anatomy of a rule set:
     margin: 0;
   }
   ```
-  *not*
-  ```
+  
+  **Bad**
+  ```scss
   .error {
     border: 0;
     margin: 0;
@@ -226,76 +234,141 @@ For reference here is an anatomy of a rule set:
     margin: 0;
   }
   ```
-- Include a single space after the colon of a property, e.g. `margin: 0;` *not* `margin:0;`.
-- Use lowercase and shorthand hex values, e.g. `#aaa` *not* `#aaaaaa`.
-- Always use the shortest shorthand form possible for properties that support it, e.g. `margin: 1px;` *not* `margin: 1px 1px 1px 1px;`.
+- Include a single space after the colon of a property.
+
+  **Good**
+  ```scss
+  margin: 0;
+  ```
+  **Bad** 
+  ```scss
+  margin:0;
+  ```
+- Use lowercase and shorthand hex values.
+  
+  **Good**
+  ```scss
+  #aaa
+  ```
+  **Bad**
+  ```scss
+  #aaaaaa
+  ```
+- Always use the shortest shorthand form possible for properties that support it.
+
+  **Good**
+  ```scss
+  margin: 1px;
+  ```
+  **Bad**
+  ```scss
+  margin: 1px 1px 1px 1px;
+  ```
 - Always use double quotes, specifically for:
     - String literals e.g. `content: "";`.
     - `url()` e.g. `background: url("img/logo.png");`.
     - Attribute values in selectors e.g. `input[type="checkbox"]`.
-- Where allowed, avoid specifying units for zero-values, e.g. `margin: 0;` *not* `margin: 0px;`.
-- Commas in lists should be followed by a space, e.g. `color: rgba(0, 0, 0, 0.1);` *not* `color: rgba(0,0,0,0.1);`.
-- Include a space before `!important` keyword, e.g. `padding: 10px !important;` *not* `padding: 10px!important;`.
-- Property values; `@extend`, `@include`, and `@import` directives; and variable declarations should always end with a semicolon, e.g. `color: #fff;` *not* `color: #fff`.
-- Parentheses should not be padded with spaces, e.g. `@include box-shadow(0 2px 2px rgba(0, 0, 0, .2));` *not* `@include box-shadow( 0 2px 2px rgba( 0, 0, 0, .2 ) );`.
-- When a decimal mark is needed always include the zero, e.g. `0.25rem` *not* `.25rem`.
-- Don't write trailing zeros for numeric values with a decimal point, e.g. `margin: 0.5em;` *not* `margin: 0.500em;`.
-- URLs should not contain protocols or domain names, e.g. `background: url('assets/image.png');` *not* `background: url('https://example.com/assets/image.png');`.
-- Indent rule sets to mirror the DOM, e.g.
-
+- Where allowed, avoid specifying units for zero-values.
+  
+  **Good**
+  ```scss
+  margin: 0;
   ```
-  .widget,
-  .widget-2 {
-    padding: 1em;
-    border: 1px solid #bada55;
-    background-color: #c0ffee;
-  }
-
-    .widget__heading {
-      font-size: 1.5rem;
-      line-height: 1;
-      font-weight: bold;
-      color: #bada55;
-    }
+  **Bad** 
+  ```scss
+  margin: 0px;
   ```
-  Here we can see that `.widget__heading` must be a child of `.widget` as we have indented the `.widget__heading` rule set one   level deeper than `.widget`, as it is in the DOM. This is useful information to developers that can now be gleaned just by a   glance at the indentation of our rule sets.
+- Commas in lists should be followed by a space.
+
+  **Good**
+  ```scss
+  color: rgba(0, 0, 0, 0.1);
+  ```
+  **Bad**
+  ```scss
+  color: rgba(0,0,0,0.1);
+  ```
+- Include a space before `!important` keyword.
+  
+  **Good**
+  ```scss
+  padding: 10px !important;
+  ```
+  **Bad**
+  ```scss
+  padding: 10px!important;
+  ```
+- Property values; `@extend`, `@include`, and `@import` directives; and variable declarations should always end with a semicolon.
+  
+  **Good**
+  ```scss
+  color: #fff;
+  ```
+  **Bad**
+  ```scss
+  color: #fff
+  ```
+- Parentheses should not be padded with spaces.
+  
+  **Good**
+  ```scss
+  @include box-shadow(0 2px 2px rgba(0, 0, 0, .2));
+  ```
+  **Bad**
+  ```scss
+  @include box-shadow( 0 2px 2px rgba( 0, 0, 0, .2 ) );
+  ```
+- When a decimal mark is needed always include the zero.
+
+  **Good**
+  ```scss
+  0.25rem
+  ```
+  **Bad**
+  ```scss
+  .25rem
+  ```
+- Don't write trailing zeros for numeric values with a decimal point.
+
+  **Good**
+  ```scss
+  margin: 0.5em;
+  ```
+  **Bad**
+  ```scss
+  margin: 0.500em;
+  ```
+- `url`s should not contain protocols or domain names. 
+ 
+  **Good**
+  ```scss
+  background: url('assets/image.png');
+  ```
+  **Bad**
+  ```scss
+  background: url('https://example.com/assets/image.png');
+  ```
 
 ### Declaration order
 
-Declarations should be ordered in relevance, **NOT** alphabetically.
+Declarations should be ordered alphabetically.
 
 Example:
 
 ```
 .selector {
-  /* Positioning */
-  position: absolute;
-  z-index: 10;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-
-  /* Display & Box Model */
-  display: inline-block;
-  overflow: hidden;
-  box-sizing: border-box;
-  width: 100px;
-  height: 100px;
-  padding: 10px;
-  border: 10px solid #333;
-  margin: 10px;
-
-  /* Other */
   background-color: #000;
+  bottom: 0;
+  box-sizing: border-box;
   color: #fff;
+  display: inline-block;
   font-family: sans-serif;
   font-size: 1em;
+  height: 100px;
   text-align: right;
+  width: 100px;
 }
 ```
-
-*Comments do not need to be used to label each group of declarations like above*.
 
 ### Exceptions and slight deviations
 
