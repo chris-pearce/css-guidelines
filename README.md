@@ -58,6 +58,7 @@
 - Sass variable = setting
 - [Scally CSS framework](https://github.com/chris-pearce/scally) = Scally
 - An ellipsis (`…`) = a placeholder for code used in a code example block
+- Written for a team
 
 
 
