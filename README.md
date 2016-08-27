@@ -22,7 +22,6 @@
     - [Inline Comments](#inline-comments)
     - [Number Labelling](#number-labelling)
     - [Component-extension Pointers](#component-extension-pointers)
-    - [BEM Modifier Markers](#bem-modifier-markers)
     - [Section Comment](#section-comment)
 - [Naming Conventions](#naming-conventions)
     - [BEM-like Naming](#bem-like-naming)
@@ -38,15 +37,12 @@
     - [Settings](#settings)
         - [Global Settings](#global-settings)
         - [Local Settings](#local-settings)
-    - [Mixins And Functions](#mixins-and-functions)
     - [Sizes And Sides](#sizes-and-sides)
-    - [Spelling](#spelling)
 - [Tooling](#tooling)
     - [Text Editor Configuration](#text-editor-configuration)
         - [Sublime Text](#sublime-text)
     - [Linting](#linting)
     - [EditorConfig](#editorconfig)
-    - [Sublime Text Snippets](#sublime-text-snippets)
 - [Writing And Architecturing CSS](#writing-and-architecturing-css)
     - [Further Reading](#further-reading)
 
@@ -56,7 +52,6 @@
 ## Terminology And Conventions Used In These Guidelines
 
 - Sass variable = setting
-- [Scally CSS framework](https://github.com/chris-pearce/scally) = Scally
 - An ellipsis (`…`) = a placeholder for code used in a code example block
 - Written for a team
 
@@ -80,11 +75,11 @@ means:
 - [consistent and meaningful commenting](#commenting);
 - and [consistent naming](#naming-conventions).
 
-All our CSS is written in [Sass](http://sass-lang.com/). Sass provides a lot of incredibly powerful features, however, we don’t want to become a platform to showcase Sass’ capabilities; we should strive to keep the Sass we write as simple and CSS-like as possible.
+All our CSS is written in [Sass](http://sass-lang.com/). Sass provides a lot of incredibly powerful features, however, we don't want to become a platform to showcase Sass' capabilities; we should strive to keep the Sass we write as simple and CSS-like as possible.
 
 ### Acknowledgements And Credit
 
-We’ve borrowed (shamelessly) a lot of our guidelines from [Harry Roberts](http://csswizardry.com/) excellent [CSS Guidelines](http://cssguidelin.es/), and some other sources of inspiration:
+We've borrowed (shamelessly) a lot of our guidelines from [Harry Roberts](http://csswizardry.com/) excellent [CSS Guidelines](http://cssguidelin.es/), and some other sources of inspiration:
 
 - [Sass Guidelines](http://sass-guidelin.es/)
 - [Idiomatic CSS](https://github.com/necolas/idiomatic-css)
@@ -166,7 +161,7 @@ Our chosen format for how CSS rulesets should be written
 Adding to the above, we also want to pay attention to
 
 - use lowercase and preferably the shorthand version for all hexadecimal units—if you wish to use the longhand version then this is fine;
-- use shorthands for properties and property values where it makes sense; where it doesn’t make sense is using a shorthand property that makes you declare zero-values, here it is better to be explicit even if it means more lines of CSS;
+- use shorthands for properties and property values where it makes sense; where it doesn't make sense is using a shorthand property that makes you declare zero-values, here it is better to be explicit even if it means more lines of CSS;
 - use single quotes for strings, `url()` values, etc;
 - wrap attribute selector values in double quotes;
 - include a space after each comma in comma-separated values;
@@ -174,7 +169,7 @@ Adding to the above, we also want to pay attention to
 - when a decimal mark is needed always include the zero;
 - use double colons (`::`) for pseudo elements;
 - use relative units—pretty much everything is `rem` based and outside of font sizing `em`s may be used for spacing within a component for scaling based on font size, but this should be checked to see what the current approach is as we want consistency with this;
-- use the `px` unit for fixed-sized things—this is rare nowadays as we’re building responsive layouts—and for the following CSS properties:
+- use the `px` unit for fixed-sized things—this is rare nowadays as we're building responsive layouts—and for the following CSS properties:
   - `border-radius`
   - `border`
   - `box-shadow`
@@ -195,15 +190,16 @@ Adding to the above, we also want to pay attention to
     font-size: .98rem;
     // Not using shorthand for the property value
     padding: rem(12) rem(12) rem(12) rem(12);
-    // Declaring zero-values due to shorthand property being used and not removing the unit from a zero-value
+    // Declaring zero-values due to shorthand property being used and not
+    // removing the unit from a zero-value
     margin: 0rem rem(6);
 
     // Not using the double colon format
     &:before {
-        // Not using shorthand for the property
+        // Not using shorthand for the property (should be `background-color`)
         background: $color-black;
         // Not using single quotes around the `content` string
-        content: '✌';
+        content: "✌";
     }
 
     // Not using double quotes around the attribute selector value
@@ -238,7 +234,7 @@ Adding to the above, we also want to pay attention to
 
 To expand on this rule: *use shorthands for properties and property values where it makes sense*, treating your properties this way makes for more maintainable and robust CSS.
 
-A good example of this is using the shorthand `background-color` property instead of the longhand `background` property when you only need to declare a colour. Using the shorthand `background-color` property means we now don’t have to worry about potentially having to override all of the properties that come bundled with the longhand `background` property, which are:
+A good example of this is using the shorthand `background-color` property instead of the longhand `background` property when you only need to declare a colour. Using the shorthand `background-color` property means we now don't have to worry about potentially having to override all of the properties that come bundled with the longhand `background` property, which are:
 
 ```scss
 background-image: initial;
@@ -262,7 +258,7 @@ Syntax and formatting rules specifically for Sass code
 - only use the parent selector reference (`&`) for these use cases
     - appending it to pseudo classes;
     - appending it to pseudo elements;
-    - appending it to [State hooks](#state-hooks) in order to chain it to the selector it’s referencing;
+    - appending it to [State hooks](#state-hooks) in order to chain it to the selector it's referencing;
     - referencing itself when combined with any of the above to avoid duplicating CSS properties;
 - only use silent placeholder selectors with the `@extend` directive, however, we'd rather avoid `@extend` as much as possible;
 - avoid selector nesting, if you have to nest then limit it to one level deep;
@@ -291,7 +287,7 @@ Syntax and formatting rules specifically for Sass code
     // Not multiplying the unit to a number stored in a setting
     padding: $padding-setting + rem;
 
-    // Using the parent selector (`&`) to chain to the selector it’s
+    // Using the parent selector (`&`) to chain to the selector it's
     // referencing when it is not a State hook
     &.selector--modifier {
         …
@@ -381,13 +377,13 @@ Syntax and formatting rules specifically for Sass code
 // Correct use of the parent selector reference (`&`)
 .selector {
     …
-    
+
     &,
     &:hover,
     &:focus {
         color: $color-text-base;
     }
-    
+
     &:hover,
     &:focus {
         …
@@ -405,7 +401,7 @@ Syntax and formatting rules specifically for Sass code
 
 ### Declaration Order
 
-Properties should be ordered alphabetically, that’s it.
+Properties should be ordered alphabetically, that's it.
 
 ###### :heavy_multiplication_x: NOT GOOD
 
@@ -463,7 +459,7 @@ Because we use Sass we can have more than just declarations between the opening 
     right: 0;
     // Mixin calls should come after extend calls and not mixed in with
     // declarations
-    @include hidpi-bg-img("path/to/image/image.png", 32px);
+    @include hidpi-bg-img('path/to/image/image.png', 32px);
     top: 0;
     z-index: 10;
     // Extend calls should come first
@@ -496,7 +492,7 @@ Because we use Sass we can have more than just declarations between the opening 
 ```scss
 .selector {
     @extend %some-silent-placeholder-selector;
-    @include hidpi-bg-img("path/to/image/image.png", 32px);
+    @include hidpi-bg-img('path/to/image/image.png', 32px);
     bottom: 0;
     display: inline-block;
     left: 0;
@@ -527,13 +523,13 @@ Because we use Sass we can have more than just declarations between the opening 
 
 ### 80 Characters Wide
 
-Where possible, limit CSS files’ width to 80 characters. Reasons for this include
+Where possible, limit CSS files' width to 80 characters. Reasons for this include
 
 - the ability to have multiple files open side by side;
 - viewing CSS on sites like GitHub, or in terminal windows;
 - providing a comfortable line length for comments.
 
-There will be unavoidable exceptions to this rule—such as URLs, or gradient syntax—which shouldn’t be worried about.
+There will be unavoidable exceptions to this rule—such as URLs, or gradient syntax—which shouldn't be worried about.
 
 ### Meaningful Whitespace
 
@@ -541,7 +537,7 @@ Whitespace is free, use it liberally and judiciously as it greatly improves the 
 
 We want our rulesets, the [discrete sections within our rulesets](#more-on-ordering) and the discrete sections within our partials, to *always* have at least one (1) empty line between them—two (2) empty lines is also fine but never more than two (2). One (1) empty line should *always* be between setting declarations, partial import directives, and a [DocBlock-*esque*](#docblock-esque) style comment and its subject.
 
-Four (4) empty lines are needed between entirely new sections (see [Section Comment](#section-comment)) however this will hardly ever be needed as we use highly concentrated partials—the most common application for this is within a global stylesheet.
+Four (4) empty lines are needed between entirely new sections (see [Section Comment](#section-comment)) however this will hardly ever be needed as we use highly concentrated partials—the most common application for this is within a global master stylesheet.
 
 ###### :heavy_multiplication_x: NOT GOOD
 
@@ -618,7 +614,6 @@ $c-search-input-padding-bottom: $c-search-input-padding-top + 1;
 /* ============================================================================
    COMPONENTS -> SEARCH INPUT
    ========================================================================= */
-
 
 /**
  * A component for the most common type of search input which has deep rounded
@@ -697,7 +692,7 @@ $c-search-input-padding-bottom: $c-search-input-padding-top + 1;
 
 ## Commenting
 
-Well commented code is *extremely* important and we really need to be heavily commenting our CSS. Take time to describe components, how they work, their limitations, and the way they are constructed. We don’t want to leave others in the team guessing as to the purpose of uncommon or non-obvious code.
+Well commented code is *extremely* important and we really need to be heavily commenting our CSS. Take time to describe components, how they work, their limitations, and the way they are constructed. We don't want to leave others in the team guessing as to the purpose of uncommon or non-obvious code.
 
 We want to be using a comment style that is simple and consistent.
 
@@ -706,7 +701,7 @@ Starting right at the top, we want
 - to place comments on a new line above their subject;
 - to keep line-length to a sensible maximum: [80 columns](#80-characters-wide);
 - to make liberal use of comments to break CSS code into discrete sections;
-- to use ‘sentence case’ comments and consistent text indentation.
+- to use 'sentence case' comments and consistent text indentation.
 
 ### DocBlock-*esque*
 
@@ -767,14 +762,13 @@ Every partial needs a partial heading type comment at the very top of the file.
    CORE -> MIXINS -> CONVERT PX TO EM/REM
    ========================================================================= */
 // [empty line]
-// [empty line]
 ```
 
 Breaking this down we have
 
 - uppercase for text;
 - a breadcrumb pattern showing where the partial belongs in the CSS architecture, the last part being the same name as the partial filename;
-- two (2) empty lines to come after.
+- one (1) empty line to come after.
 
 ### Partial Intro
 
@@ -783,13 +777,12 @@ A partial intro type comment follows a [Partial Heading](#partial-heading) type 
 It should be structured like this
 
 - a description—be as detailed as you can here;
-- any attention grabbing comments prefix with ‘N.B.’;
+- any attention grabbing comments prefix with **N.B.**;
 - mandatory sections prefixed with `@`
-    - `@markup`: if applicable the markup that the CSS applies too—this is typically for components—*this should always come last*—when we have a living style guide this will no longer be required;
+    - `@markup`: if applicable the markup that the CSS applies too—this is typically for components—*this should always come last* if you have a living style guide this will no longer be required;
     - `@demo`: if applicable any URL(s) to demonstration(s);
     - `@credit`: if applicable any URL(s) to credit where any ideas came from;
 - non-mandatory sections prefixed with `@`
-    - `@author` and `@created`: the *original* author of the file and the date the file was created;
     - `@todo`: any outstanding tasks;
     - `@consideration`: any things to consider;
 - One (1) empty line between each of the above sections and two (2) empty lines coming after the intro.
@@ -805,13 +798,7 @@ It should be structured like this
  * trigger is selected. There is also a version for showing the drop down via
  * the `:hover` pseudo class which is turned off for touch devices.
  *
- * N.B. this helper is dependant on the Align helper.
- *
- * @author
- * Chris Pearce
- *
- * @created
- * 12/08/2015
+ * N.B. this helper is dependent on the "Align" helper.
  *
  * @credit
  * http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code
@@ -846,14 +833,14 @@ These comments should always be above their subject with a space coming after th
  */
 
 // Colours
-$c-pagination-background-color:   #000;
+$c-pagination-background-color: #000;
 
-$c-pagination-foreground-color:   #333;
+$c-pagination-foreground-color: #333;
 
 // Padding
-$c-pagination-padding-left:       $spacing-base;
+$c-pagination-padding-left: $spacing-base;
 
-$c-pagination-padding-right:      $spacing-half;
+$c-pagination-padding-right: $spacing-half;
 
 
 h1 {
@@ -869,7 +856,7 @@ h1 {
 
 A number labelling type comment is used when [Inline Comments](#inline-comments) would need to be repeated.
 
-**N.B.** this is the only time when comments—the numbers—don’t need to be on a new line above their subject.
+**N.B.** this is the only time when comments—the numbers—don't need to be on a new line above their subject.
 
 ###### :heavy_multiplication_x: NOT GOOD
 
@@ -921,36 +908,12 @@ When this occurs we want to document this relationship across partials using a s
 }
 ```
 
-### BEM Modifier Markers
-
-Whenever you declare a [BEM](#bem-like-naming) *Modifier* include a [DocBlock*-esque*](#docblock-esque) type comment.
-
-It should be structured like this
-
-- the word ‘Modifier’ plus a colon (`:`), followed by an empty space and the name of the *Modifier*;
-- if applicable an explanation of what the *Modifier* is achieving, one (1) empty line comes before this.
-
-###### :heavy_check_mark: GOOD
-
-```scss
-/**
- * Modifier: striped.
- *
- * Applies a background colour to every odd row.
- */
-
-.c-table--striped {
-  tr:nth-of-type(odd) td {
-    background-color: $c-table-striped-background-cell-colour;
-  }
-}
-```
-
 ### Section Comment
 
 When we have really long stylesheets we need a comment that stands out more than a [DocBlock*-esque*](#docblock-esque) type comment.
 
-This type of comment is rare due to us working in highly concentrated partials—the most common application for this is within a global stylesheet. Four (4) empty lines come between each section and one (1) empty line between the comment and its subject.
+This type of comment is rare due to us working in highly concentrated partials—the most common application for this is within a global master
+stylesheet. Four (4) empty lines come between each section and one (1) empty line between the comment and its subject.
 
 ###### :heavy_check_mark: GOOD
 
@@ -981,15 +944,15 @@ Starting right at the top, we use
 - [hyphen-delimited](#hyphen-delimited) for everything else;
 - [namespaces](#namespace) for almost everything.
 
-We don’t want
+We don't want
 
 - CamelCase;
-- underscores with the exception of being used in BEM *Element* selectors and the *Hack* [namespace](#namespace);
+- underscores with the exception of being used in BEM *Element* selectors;
 - `id`s, **never**.
 
 ### BEM-like Naming
 
-We apply BEM as described in the [BEM-like naming](http://cssguidelin.es/#bem-like-naming) section of [Harry Roberts](http://csswizardry.com/) excellent [CSS Guidelines](http://cssguidelin.es/). For further reading check out this article: [MindBEMding – getting your head ’round BEM syntax](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/), again by Harry Roberts.
+We apply BEM as described in the [BEM-like naming](http://cssguidelin.es/#bem-like-naming) section of [Harry Roberts](http://csswizardry.com/) excellent [CSS Guidelines](http://cssguidelin.es/). For further reading check out this article: [MindBEMding – getting your head 'round BEM syntax](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/), again by Harry Roberts.
 
 So rather than rehashing everything about BEM please read the above resources.
 
@@ -1010,7 +973,8 @@ We use hyphen-delimited for:
 
 ### Namespace
 
-Mostly everything in our CSS and in [Scally](https://github.com/chris-pearce/scally) is namespaced so that our CSS is as transparent and self-documenting as possible.
+Mostly everything in our CSS is namespaced so that our CSS is as transparent
+and self-documenting as possible.
 
 #### What We Namespace
 
@@ -1024,16 +988,14 @@ They are all prefixed with a letter followed by a hyphen.
 
 #### The Namespaces
 
-Taken from [Scally](https://github.com/chris-pearce/scally):
-
-- `l-`: [Layout Modules](https://github.com/chris-pearce/scally/tree/master/layout)
+- `l-`: **Layout Modules** ([read more here](https://github.com/chris-pearce/scally/blob/master/layout/README.md))
 
     *Examples:*
     - `.l-grid`
     - `$l-grid-gutter`
     - `_l-grid.scss`
 
-- `c-`: [Components](https://github.com/chris-pearce/scally/tree/master/components)
+- `c-`: **Components** ([read more here](https://github.com/chris-pearce/scally/blob/master/components/README.md))
 
     *Examples:*
     - `.c-button`
@@ -1073,9 +1035,10 @@ And the rest:
 
 ##### JS Hooks
 
-Rather than rehashing everything about JS hooks let’s instead defer to the [JavaScript Hooks](http://cssguidelin.es/#javascript-hooks) section in [Harry Roberts](http://csswizardry.com/) excellent [CSS Guidelines](http://cssguidelin.es/).
+Rather than rehashing everything about JS hooks let's instead defer to the [JavaScript Hooks](http://cssguidelin.es/#javascript-hooks) section in [Harry Roberts](http://csswizardry.com/) excellent [CSS Guidelines](http://cssguidelin.es/).
 
-JS hooks—and [Server-side](#server-side-hooks), [QA](#qa-hooks), and [Tracking hooks](#tracking-hooks)—should always be scoped to the component it is part of to avoid clashing with other hooks of the same category, and to keep them highly readable—not much different to how we structure our classes for styling.
+JS hooks—and [Server-side](#server-side-hooks), [QA](#qa-hooks), and [Tracking hooks](#tracking-hooks)—should always be scoped to the component it is part
+off to avoid clashing with other hooks of the same category, and to keep them highly readable—not much different to how we structure our classes for styling.
 
 ###### :heavy_multiplication_x: NOT GOOD
 
@@ -1107,7 +1070,7 @@ Styles that are needed to be applied to an elements state are applied by a class
 - `is-visible`
 - `has-loaded`
 
-JavaScript or server-side logic is typically used to apply state hooks. A classic example is using server-side logic to apply a state hook to highlight the active link in a primary navigation component, the server-side code would append the `.is-active` state hook to the relevant `a` element.
+JavaScript or server-side logic is typically used to apply state hooks. A classic example is using server-side logic to apply a state hook to highlight the active link in a primary navigation component, the server-side code would append the `.is-active` state hook to the relevant `<a>` element.
 
 To keep things consistent and to reduce the cognitive load of having to come up with names for state hooks we should try to stick with a set list of common state hook names, something like:
 
@@ -1238,7 +1201,7 @@ $c-drop-down-menu-link-padding-top-padding-bottom: 8px;
 // Colours
 $c-drop-down-menu-background-color: $g-color-white;
 
-$c-drop-down-menu-outline-color: rgba($g=color-black, 0.19);
+$c-drop-down-menu-outline-color: rgba($g-color-black, 0.19);
 
 $c-drop-down-menu-link-color: $g-color-grey-rolling-stone;
 
@@ -1259,15 +1222,9 @@ $c-drop-down-menu-link-padding-sides: 15px;
 $c-drop-down-menu-link-padding-ends: 8px;
 ```
 
-### Mixins And Functions
-
-There are other things we can name in Sass like functions and mixins however it’s rare we will have to create any as [Scally](https://github.com/chris-pearce/scally/) should provide everything we need in that regard. If we do need to create new generic mixins and functions then we should strive to get them into Scally.
-
-If any non-generic mixins and functions are needed i.e. a mixin may be helpful to only a specific component, then these are to reside in the component partial and treated as *local* and adequately [namespaced](#namespace).
-
 ### Sizes And Sides
 
-We use a naming convention for sizes and for targeting an element’s top and bottom, left and right sides, which we use to keep things consistent and to reduce the cognitive load in coming up with our own names.
+We use a naming convention for sizes and for targeting an element's top and bottom, left and right sides, which we use to keep things consistent and to reduce the cognitive load in coming up with our own names.
 
 The main naming convention for sizes:
 
@@ -1327,7 +1284,7 @@ A secondary naming convention for sizes is the `x` pattern where `x` is short fo
 
 The `x` naming convention is better suited when you have *many* sizes as it scales more sensibly. This pattern is rarely needed and it is probably a good time to reassess your component before implementing.
 
-Another naming convention we use is *Ends* and *Sides* which are used to target either an element’s top and bottom (ends) or its left and right (sides).
+Another naming convention we use is *Ends* and *Sides* which are used to target either an element's top and bottom (ends) or its left and right (sides).
 
 ###### :heavy_check_mark: GOOD
 
@@ -1345,58 +1302,47 @@ Another naming convention we use is *Ends* and *Sides* which are used to target 
 
 ### Containers
 
-The names we give to classes that act as containers should be *container* e.g. `.l-container`, we shouldn’t use *wrap*.
+The names we give to classes that act as containers should be *container* e.g. `.l-container`, we shouldn't use *wrap*.
 
 And for inner containers we should simply use *inner* e.g. `.c-card__inner`.
-
-### Spelling
-
-We want to stick with British English spelling not American with the exception of the word **colour** but only in code, not required anywhere else, e.g. in comments.
-
-###### :heavy_multiplication_x: NOT GOOD
-
-```scss
-.c-panel__customize {
-    …
-}
-
-// Brand color
-$g-colour-brand: #444;
-```
-
-###### :heavy_check_mark: GOOD
-
-```scss
-.c-panel__customise {
-    …
-}
-
-// Brand colour
-$g-color-brand: #444;
-```
 
 
 
 
 ## Tooling
 
-Making it easier to apply our guidelines and to prevent wasting time picking apart nonconforming code in code review (PR’s).
+Making it easier to apply our guidelines and to prevent wasting time picking apart nonconforming code in code review (PR's).
 
 ### Linting
 
-Coming soon.
+We recommend using the excellent [stylelint](http://stylelint.io/) CSS linter.
+
+You'll be able to create a configuration file that enforces pretty much all
+of these guidelines. Stand by for such a file.
 
 ### EditorConfig
 
-We use an EditorConfig (`.editorconfig`) file which enforces our indenting rules.
+We use an [EditorConfig](http://editorconfig.org) file which enforces our
+indenting rules.
 
-Please install the relevant plugin for your text editor: <http://editorconfig.org/#download>.
+The contents of the `.editorconfig` file should look something like this:
 
-You can view the file [here](https://git.campmon.com/Freshview/createsend.com/blob/master/.editorconfig) and there is a [wiki page](https://campmon.com/wiki/display/DEV/EditorConfig) explaining more about it.
+```
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_style = space
+indent_size = 4
+trim_trailing_whitespace = true
+insert_final_newline = true
+```
 
 ### Text Editor Configuration
 
-You should configure your text editor to adhere to as much of our guidelines as possible.
+You should configure your text editor to adhere to as much of these guidelines
+as possible.
 
 At the bare minimum configure your editor to *show invisibles* or to automatically remove end-of-line whitespace.
 
@@ -1415,10 +1361,6 @@ If you use Sublime Text editor then install [this package](https://github.com/Su
 
 Also install [this package](https://sublime.wbond.net/packages/DocBlockr) to make writing DocBlock style comments super easy.
 
-### Sublime Text Snippets
-
-Coming soon.
-
 
 
 
@@ -1426,7 +1368,7 @@ Coming soon.
 
 All of the above is about how we structure and form our CSS; they are very quantifiable rules.
 
-For how to deal with our attitude and approach to writing and architecturing CSS I am yet to document this—it is coming soon so watch this space.
+For how to deal with our attitude and approach to writing and architecturing CSS we are yet to document this—it is coming soon so watch this space.
 
 In the interim we can link to relevant parts of [Harry Roberts](http://csswizardry.com/) excellent [CSS Guidelines](http://cssguidelin.es/):
 
