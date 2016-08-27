@@ -912,8 +912,7 @@ When this occurs we want to document this relationship across partials using a s
 
 When we have really long stylesheets we need a comment that stands out more than a [DocBlock*-esque*](#docblock-esque) type comment.
 
-This type of comment is rare due to us working in highly concentrated partials—the most common application for this is within a global master
-stylesheet. Four (4) empty lines come between each section and one (1) empty line between the comment and its subject.
+This type of comment is rare due to us working in highly concentrated partials—the most common application for this is within a global master stylesheet. Four (4) empty lines come between each section and one (1) empty line between the comment and its subject.
 
 ###### :heavy_check_mark: GOOD
 
