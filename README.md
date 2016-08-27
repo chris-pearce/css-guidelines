@@ -973,8 +973,7 @@ We use hyphen-delimited for:
 
 ### Namespace
 
-Mostly everything in our CSS is namespaced so that our CSS is as transparent
-and self-documenting as possible.
+Mostly everything in our CSS is namespaced so that our CSS is as transparent and self-documenting as possible.
 
 #### What We Namespace
 
@@ -1037,8 +1036,7 @@ And the rest:
 
 Rather than rehashing everything about JS hooks let's instead defer to the [JavaScript Hooks](http://cssguidelin.es/#javascript-hooks) section in [Harry Roberts](http://csswizardry.com/) excellent [CSS Guidelines](http://cssguidelin.es/).
 
-JS hooks—and [Server-side](#server-side-hooks), [QA](#qa-hooks), and [Tracking hooks](#tracking-hooks)—should always be scoped to the component it is part
-off to avoid clashing with other hooks of the same category, and to keep them highly readable—not much different to how we structure our classes for styling.
+JS hooks—and [Server-side](#server-side-hooks), [QA](#qa-hooks), and [Tracking hooks](#tracking-hooks)—should always be scoped to the component it is part off to avoid clashing with other hooks of the same category, and to keep them highly readable—not much different to how we structure our classes for styling.
 
 ###### :heavy_multiplication_x: NOT GOOD
 
@@ -1317,13 +1315,11 @@ Making it easier to apply our guidelines and to prevent wasting time picking apa
 
 We recommend using the excellent [stylelint](http://stylelint.io/) CSS linter.
 
-You'll be able to create a configuration file that enforces pretty much all
-of these guidelines. Stand by for such a file.
+You'll be able to create a configuration file that enforces pretty much all of these guidelines. Stand by for such a file.
 
 ### EditorConfig
 
-We use an [EditorConfig](http://editorconfig.org) file which enforces our
-indenting rules.
+We use an [EditorConfig](http://editorconfig.org) file which enforces our indenting rules.
 
 The contents of the `.editorconfig` file should look something like this:
 
@@ -1341,8 +1337,7 @@ insert_final_newline = true
 
 ### Text Editor Configuration
 
-You should configure your text editor to adhere to as much of these guidelines
-as possible.
+You should configure your text editor to adhere to as much of these guidelines as possible.
 
 At the bare minimum configure your editor to *show invisibles* or to automatically remove end-of-line whitespace.
 
